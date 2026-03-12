@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkulator Sederhana</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f4f4f4;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.kalkulator{
+  background:rgb(240, 240, 240);
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+h1{
+  text-align:center;
+}
+
+#layar{
+  width:94%;
+  height: 35px;
+  font-size:20px;
+  text-align:right;
+  margin-bottom:10px;
+  padding:5px;
+  border:1px solid #ccc;
+  border-radius:5px;
+}
+
+table{
+  width:100%;
+}
+
+button{
+  width:100%;
+  height:50px;
+  font-size:18px;
+  border:none;
+  border-radius:5px;
+  background:#e0e0e0;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+button:hover{
+  background:#d5d5d5;
+}
+
+.operator{
+  background:rgb(255, 176, 28);
+  color:white;
+}
+
+.operator:hover{
+  background: rgb(241, 157, 0);
+}
+
+#clear{
+  background:#bebebe;
+  color:white;
+}
+
+#equal{
+  background:#bebebe;
+  color:white;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="kalkulator">
+<h1>Kalkulator</h1>
+
+<input type="text" id="layar" placeholder="0" readonly>
+
+<table>
+<tr>
+<td><button>7</button></td>
+<td><button>8</button></td>
+<td><button>9</button></td>
+<td><button class="operator">/</button></td>
+</tr>
+
+<tr>
+<td><button>4</button></td>
+<td><button>5</button></td>
+<td><button>6</button></td>
+<td><button class="operator">*</button></td>
+</tr>
+
+<tr>
+<td><button>1</button></td>
+<td><button>2</button></td>
+<td><button>3</button></td>
+<td><button class="operator">-</button></td>
+</tr>
+
+<tr>
+<td><button id="clear">C</button></td>
+<td><button>0</button></td>
+<td><button id="equal">=</button></td>
+<td><button class="operator">+</button></td>
+</tr>
+</table>
+</div>
+
+<script>
+const layar = document.getElementById("layar");
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach(button => {
+  button.addEventListener("click", () => {
+    const value = button.innerText;
+
+    if (value === "C") {
+      layar.value = "";
+    } 
+    else if (value === "=") {
+      try {
+        layar.value = eval(layar.value);
+      } catch {
+        layar.value = "Error";
+      }
+    } 
+    else {
+      layar.value += value;
+    }
+  });
+});
+</script>
+
+</body>
+</html>
